@@ -1,21 +1,22 @@
 // Copyright (c) 2015-2017, The Bytecoin developers
 // Copyright (c) 2017-2018, The Karbo developers
 // Copyright (c) 2019, The Qwertycoin developers
+// Copyright (c) 2019, The Diamoneum developers
 //
-// This file is part of Qwertycoin.
+// This file is part of Diamoneum.
 //
-// Qwertycoin is free software: you can redistribute it and/or modify
+// Diamoneum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// Qwertycoin is distributed in the hope that it will be useful,
+// Diamoneum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with Qwertycoin.  If not, see <http://www.gnu.org/licenses/>.
+// along with Diamoneum.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QEvent>
 #include <QFileOpenEvent>
@@ -59,7 +60,7 @@ namespace WalletGui {
 
 namespace {
 
-const char URI_SCHEME_NAME[] = "qwertycoin";
+const char URI_SCHEME_NAME[] = "Diamoneum";
 const QRegularExpression LOG_SPLASH_REG_EXP("\\[Core\\] Imported block with index");
 
 quint16 findPort() {
@@ -104,7 +105,7 @@ WalletApplication::WalletApplication(int& _argc, char** _argv) : QApplication(_a
   m_systemTrayIcon(new QSystemTrayIcon(this)), m_applicationEventHandler(new ApplicationEventHandler(this)),
   m_optimizationManager(nullptr), m_donationManager(nullptr), m_mainWindow(nullptr), m_splash(nullptr),
   m_logWatcher(nullptr), m_isAboutToQuit(false) {
-  setApplicationName("qwertycoinwallet");
+  setApplicationName("DiamoneumWallet");
   setApplicationVersion(Settings::instance().getVersion());
   setQuitOnLastWindowClosed(false);
   setStyle(QStyleFactory::create("fusion"));
@@ -140,7 +141,7 @@ bool WalletApplication::init() {
   makeDataDir();
   WalletLogger::init(Settings::instance().getDataDir(), Settings::instance().hasDebugOption(), this);
   WalletLogger::info(tr("[Application] Initializing..."));
-  m_lockFile = new QLockFile(Settings::instance().getDataDir().absoluteFilePath("qwertycoinwallet.lock"));
+  m_lockFile = new QLockFile(Settings::instance().getDataDir().absoluteFilePath("DiamoneumWallet.lock"));
   QUrl paymentUrl = QUrl::fromUserInput(arguments().last());
   if (paymentUrl.scheme() != URI_SCHEME_NAME) {
     paymentUrl = QUrl();
@@ -152,9 +153,9 @@ bool WalletApplication::init() {
   }
 #endif
   if (!m_lockFile->tryLock()) {
-    WalletLogger::warning(tr("[Application] Qwertycoin wallet already running"));
+    WalletLogger::warning(tr("[Application] Diamoneum wallet already running"));
     if (!paymentUrl.isValid()) {
-      QMessageBox::warning(nullptr, QObject::tr("Fail"), "Qwertycoin wallet already running");
+      QMessageBox::warning(nullptr, QObject::tr("Fail"), "Diamoneum wallet already running");
     }
 
     return false;
@@ -257,9 +258,9 @@ bool WalletApplication::initCryptoNoteAdapter() {
       okButton->setText(QObject::tr("Ok"));
       dlg.addButton(okButton, QMessageBox::AcceptRole);
       dlg.setText(QObject::tr("The database is currently used by another application or service.\n"
-      "If you have qwertycoind with non-default RPC port, you should terminate it and relaunch wallet\n"
+      "If you have Diamoneumd with non-default RPC port, you should terminate it and relaunch wallet\n"
       "or\n"
-      "Set the Local deamon required port in QwertyWallet Menu/Preferences/Connection settings."));
+      "Set the Local deamon required port in DiamoneumWallet Menu/Preferences/Connection settings."));
       dlg.exec();
       return false;
     }

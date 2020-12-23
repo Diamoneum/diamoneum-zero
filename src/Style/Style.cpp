@@ -1,21 +1,22 @@
 // Copyright (c) 2015-2017, The Bytecoin developers
 // Copyright (c) 2017-2018, The Karbo developers
 // Copyright (c) 2019, The Qwertycoin developers
+// Copyright (c) 2020-2021, The Diamoneum developers
 //
-// This file is part of Qwertycoin.
+// This file is part of Diamoneum.
 //
-// Qwertycoin is free software: you can redistribute it and/or modify
+// Diamoneum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// Qwertycoin is distributed in the hope that it will be useful,
+// Diamoneum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with Qwertycoin.  If not, see <http://www.gnu.org/licenses/>.
+// along with Diamoneum.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QIcon>
 
@@ -135,11 +136,11 @@ QString Style::glassColor() const {
 
 QIcon Style::getSystemTrayIcon() const {
 #ifdef Q_OS_MAC
-  return QIcon(":images/Qwertycoin_mac");
+  return QIcon(":images/Diamoneum_mac");
 #elif defined(Q_OS_LINUX)
-  return QIcon(":images/Qwertycoin_lin");
+  return QIcon(":images/Diamoneum_lin");
 #elif defined(Q_OS_WIN)
-  return QIcon(":images/Qwertycoin_win");
+  return QIcon(":images/Diamoneum_win");
 #endif
 }
 

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Diamoneum Zero Wallet
+Comment=Diamoneum wallet
+Exec=DiamoneumWallet %U
+Terminal=false
+Type=Application
+Icon=Diamoneum
+MimeType=x-scheme-handler/Diamoneum;
+Categories=Office;Finance;
+Version=1.2.0

@@ -1,21 +1,22 @@
 // Copyright (c) 2015-2017, The Bytecoin developers
 // Copyright (c) 2017-2018, The Karbo developers
 // Copyright (c) 2019, The Qwertycoin developers
+// Copyright (c) 2020-2021, The Diamoneum developers
 //
-// This file is part of Qwertycoin.
+// This file is part of Diamoneum.
 //
-// Qwertycoin is free software: you can redistribute it and/or modify
+// Diamoneum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// Qwertycoin is distributed in the hope that it will be useful,
+// Diamoneum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with Qwertycoin.  If not, see <http://www.gnu.org/licenses/>.
+// along with Diamoneum.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cstring>
 
@@ -79,12 +80,12 @@ namespace WalletGui {
 namespace {
 
 const int MAX_RECENT_WALLET_COUNT = 10;
-const char COMMUNITY_FORUM_URL[] = "https://forum.qwertycoin.org";
-const char REPORT_ISSUE_URL[] = "https://github.com/qwertycoin-org/qwertycoin-zero/issues";
+const char COMMUNITY_FORUM_URL[] = "https://forum.diamoneum.xyz";
+const char REPORT_ISSUE_URL[] = "https://github.com/Diamoneum/diamoneum-zero/issues";
 
 const char DONATION_URL_DONATION_TAG[] = "donation";
 const char DONATION_URL_LABEL_TAG[] = "label";
-const char DONATION_ADDRESS[] = "QWC1RALGaP5U8BLJskYR2YVSjr3DQEEuS5xghbtX2mm134YVXgS4RJHZGkeBvXf4BRFLWkv4zHGJ267S9pjwvVt63xwkdYPCwF";
+const char DONATION_ADDRESS[] = "diamowieNXVVxGW2GbJERHgawnfvWokZ6bHnzYC2w67KMyV1BiT9Aux6JzY1wg4HmJHMoYJQdyj5LHKKEsFP2FBsA5aimMoQ46";
 
 QByteArray convertAccountKeysToByteArray(const AccountKeys& _accountKeys) {
   QByteArray spendPublicKey(reinterpret_cast<const char*>(&_accountKeys.spendKeys.publicKey), sizeof(Crypto::PublicKey));
@@ -127,7 +128,7 @@ MainWindow::MainWindow(ICryptoNoteAdapter* _cryptoNoteAdapter, IAddressBookManag
   m_addRecipientAction(new QAction(this)), m_styleSheetTemplate(_styleSheetTemplate), m_walletStateMapper(new QDataWidgetMapper(this)),
   m_syncMovie(new QMovie(Settings::instance().getCurrentStyle().getWalletSyncGifFile(), QByteArray(), this)) {
   m_ui->setupUi(this);
-  setWindowTitle(tr("Qwertycoin Zero %1").arg(Settings::instance().getVersion()));
+  setWindowTitle(tr("Diamoneum Zero %1").arg(Settings::instance().getVersion()));
   m_addRecipientAction->setObjectName("m_addRecipientAction");
   m_cryptoNoteAdapter->addObserver(this);
   m_cryptoNoteAdapter->getNodeAdapter()->getWalletAdapter()->addObserver(this);

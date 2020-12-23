@@ -1,5 +1,5 @@
-# Qwertycoin: C++ client, tools and libraries.
-# Copyright 2019 (c) The Qwertycoin Group.
+# Diamoneum: C++ client, tools and libraries.
+# Copyright 2019 (c) The Diamoneum Group.
 # Licensed under the GNU General Public License, Version 3.
 # See the file LICENSE from this package for details.
 
@@ -73,16 +73,16 @@ if(GIT_FOUND)
     endif()
 endif()
 
-set(PROJECT_DISPLAY_NAME "Qwertycoin")
-set(PROJECT_SHORT_NAME "qwcz")
-set(PROJECT_NAME "qwertycoin-zero")
-set(PROJECT_CURRENCY_TICKER "QWC")
+set(PROJECT_DISPLAY_NAME "Diamoneum")
+set(PROJECT_SHORT_NAME "Diam-Zero")
+set(PROJECT_NAME "Diamoneum-Zero")
+set(PROJECT_CURRENCY_TICKER "DIAM")
 set(PROJECT_DESCRIPTION "Safe. Simple. Seamless. Secure.")
 set(PROJECT_VERSION "${PROJECT_GIT_TAG}")
-set(PROJECT_COPYRIGHT "Copyright 2019 The Qwertycoin Group")
-set(PROJECT_VENDOR_NAME "The Qwertycoin Group")
-set(PROJECT_VENDOR_URL "https://qwertycoin.org")
-set(PROJECT_VENDOR_DOMAIN_REVERSED "org.qwertycoin")
+set(PROJECT_COPYRIGHT "Copyright 2020 The Diamoneum Group")
+set(PROJECT_VENDOR_NAME "The Diamoneum Group")
+set(PROJECT_VENDOR_URL "https://diamoneum.xyz")
+set(PROJECT_VENDOR_DOMAIN_REVERSED "xyz.diamoneum")
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION} LANGUAGES C CXX)
 
 if(APPLE)
@@ -100,7 +100,7 @@ include(ExternalProject)
 include(external/Boost)
 include(external/qrencode)
 include(external/Qt5)
-include(external/Qwertycoin)
+include(external/Diamoneum)
 include(external/sparsehash)
 include(external/codecov)
 include(external/Threads)

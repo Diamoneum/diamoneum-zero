@@ -897,7 +897,7 @@
      <x>0</x>
      <y>0</y>
      <width>1060</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -938,7 +938,7 @@
     </property>
     <addaction name="m_communityForumAction"/>
     <addaction name="m_reportIssueAction"/>
-    <addaction name="m_aboutQwertycoinAction"/>
+    <addaction name="m_aboutDiamoneumAction"/>
     <addaction name="m_aboutQtAction"/>
    </widget>
    <widget class="QMenu" name="menuPayment">
@@ -1024,12 +1024,12 @@
     <string>Change password</string>
    </property>
   </action>
-  <action name="m_aboutQwertycoinAction">
+  <action name="m_aboutDiamoneumAction">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>About Qwertycoin Zero Wallet</string>
+    <string>About Diamoneum Zero Wallet</string>
    </property>
   </action>
   <action name="m_aboutQtAction">
@@ -1344,7 +1344,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>m_aboutQwertycoinAction</sender>
+   <sender>m_aboutDiamoneumAction</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>about()</slot>

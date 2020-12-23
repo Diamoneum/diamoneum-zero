@@ -84,13 +84,13 @@
     </qresource>
     <qresource prefix="/images">
         <file alias="splash">images/splash.png</file>
-        <file alias="Qwertycoin_lin">images/Qwertycoin.png</file>
+        <file alias="Diamoneum_lin">images/Diamoneum.png</file>
         <file alias="add_address_helper">images/add_address_helper.png</file>
-        <file alias="Qwertycoin_mac">images/Qwertycoin.icns</file>
-        <file alias="Qwertycoin_win">images/Qwertycoin.ico</file>
+        <file alias="Diamoneum_mac">images/Diamoneum.icns</file>
+        <file alias="Diamoneum_win">images/Diamoneum.ico</file>
     </qresource>
     <qresource prefix="/style">
-        <file alias="qss">qwertycoinwallet.qss</file>
+        <file alias="qss">DiamoneumWallet.qss</file>
     </qresource>
     <qresource prefix="/font">
         <file alias="Bold">font/OpenSans-Bold.ttf</file>

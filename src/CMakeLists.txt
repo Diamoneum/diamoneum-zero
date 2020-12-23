@@ -296,7 +296,7 @@ elseif(APPLE)
 elseif(WIN32)
     list(APPEND TARGET_SRC "${CMAKE_CURRENT_LIST_DIR}/Platform/Windows/ApplicationEventHandler.cpp")
     list(APPEND TARGET_SRC "${CMAKE_CURRENT_LIST_DIR}/Platform/Windows/ApplicationEventHandler.h")
-    list(APPEND TARGET_SRC "${CMAKE_CURRENT_LIST_DIR}/qwertycoinwallet.rc")
+    list(APPEND TARGET_SRC "${CMAKE_CURRENT_LIST_DIR}/DiamoneumWallet.rc")
 endif()
 
 # Include directories
@@ -309,7 +309,7 @@ set(TARGET_INCLUDE_DIRS
     "${Qt5Gui_INCLUDE_DIRS}"
     "${Qt5Network_INCLUDE_DIRS}"
     "${Qt5Widgets_INCLUDE_DIRS}"
-    "${QwertycoinFramework_INCLUDE_DIRS}"
+    "${DiamoneumFramework_INCLUDE_DIRS}"
     "${CMAKE_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_LIST_DIR}"
     "${CMAKE_CURRENT_BINARY_DIR}"
@@ -333,24 +333,24 @@ set(TARGET_LINK_LIBS
     Qt5::Gui
     Qt5::Network
     Qt5::Widgets
-    QwertycoinFramework::BlockchainExplorer
-    QwertycoinFramework::Common
-    QwertycoinFramework::Crypto
-    QwertycoinFramework::CryptoNoteCore
-    QwertycoinFramework::CryptoNoteProtocol
-    QwertycoinFramework::Http
-    QwertycoinFramework::InProcessNode
-    QwertycoinFramework::JsonRpcServer
-    QwertycoinFramework::Logging
-    QwertycoinFramework::Mnemonics
-    QwertycoinFramework::NodeRpcProxy
-    QwertycoinFramework::P2p
-    QwertycoinFramework::PaymentGate
-    QwertycoinFramework::Rpc
-    QwertycoinFramework::Serialization
-    QwertycoinFramework::System
-    QwertycoinFramework::Transfers
-    QwertycoinFramework::Wallet
+    DiamoneumFramework::BlockchainExplorer
+    DiamoneumFramework::Common
+    DiamoneumFramework::Crypto
+    DiamoneumFramework::CryptoNoteCore
+    DiamoneumFramework::CryptoNoteProtocol
+    DiamoneumFramework::Http
+    DiamoneumFramework::InProcessNode
+    DiamoneumFramework::JsonRpcServer
+    DiamoneumFramework::Logging
+    DiamoneumFramework::Mnemonics
+    DiamoneumFramework::NodeRpcProxy
+    DiamoneumFramework::P2p
+    DiamoneumFramework::PaymentGate
+    DiamoneumFramework::Rpc
+    DiamoneumFramework::Serialization
+    DiamoneumFramework::System
+    DiamoneumFramework::Transfers
+    DiamoneumFramework::Wallet
 )
 if(APPLE)
     find_library(Cocoa_UNIT Cocoa)
@@ -380,6 +380,7 @@ configure_file(
     @ONLY
 )
 message(STATUS "version.h: ${CMAKE_CURRENT_BINARY_DIR}/version.h")
+find_package(Qt5 CONFIG REQUIRED Core DBus)
 
 add_executable(${TARGET_NAME} WIN32 MACOSX_BUNDLE ${TARGET_SRC})
 add_executable(${TARGET_NAME_ALIAS} ALIAS ${TARGET_NAME})
@@ -391,7 +392,7 @@ if(PROJECT_OS_LINUX)
     set_target_properties(
         ${TARGET_NAME}
         PROPERTIES
-            OUTPUT_NAME "qwertycoin-zero"
+            OUTPUT_NAME "Diamoneum-zero"
             BUILD_WITH_INSTALL_RPATH TRUE
             INSTALL_RPATH "$ORIGIN/../lib"
     )
@@ -434,19 +435,19 @@ if(PROJECT_OS_LINUX OR PROJECT_OS_POSIX) # Linux
     endif()
 
     install(
-        FILES "${CMAKE_CURRENT_LIST_DIR}/qwertycoinwallet.sh"
+        FILES "${CMAKE_CURRENT_LIST_DIR}/DiamoneumWallet.sh"
         DESTINATION bin
         PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ
-        RENAME qwertycoin-zero
+        RENAME Diamoneum-zero
     )
 
     install(
-        FILES "${CMAKE_CURRENT_LIST_DIR}/qwertycoinwallet.desktop"
+        FILES "${CMAKE_CURRENT_LIST_DIR}/DiamoneumWallet.desktop"
         DESTINATION share/applications
     )
 
     install(
-        FILES "${CMAKE_CURRENT_LIST_DIR}/images/Qwertycoin.png"
+        FILES "${CMAKE_CURRENT_LIST_DIR}/images/Diamoneum.png"
         DESTINATION icons/hicolor/256x256/apps
     )
 
@@ -460,7 +461,7 @@ elseif(PROJECT_OS_MACOS) # macOS
     message(STATUS "Configuring macOS installation targets...")
 
     set(MACOSX_BUNDLE_BUNDLE_PATH "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_DISPLAY_NAME}.app")
-    set(MACOSX_BUNDLE_ICON_FILE_NAME "Qwertycoin.icns")
+    set(MACOSX_BUNDLE_ICON_FILE_NAME "Diamoneum.icns")
 
     set_target_properties(
         ${TARGET_NAME}

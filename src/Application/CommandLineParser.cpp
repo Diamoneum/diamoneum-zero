@@ -1,21 +1,22 @@
 // Copyright (c) 2015-2017, The Bytecoin developers
 // Copyright (c) 2017-2018, The Karbo developers
 // Copyright (c) 2019, The Qwertycoin developers
+// Copyright (c) 2020-2021, The Diamoneum developers
 //
-// This file is part of Qwertycoin.
+// This file is part of Diamoneum.
 //
-// Qwertycoin is free software: you can redistribute it and/or modify
+// Diamoneum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// Qwertycoin is distributed in the hope that it will be useful,
+// Diamoneum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with Qwertycoin.  If not, see <http://www.gnu.org/licenses/>.
+// along with Diamoneum.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <Common/Util.h>
 #include <Global/CryptoNoteConfig.h>
@@ -43,7 +44,7 @@ CommandLineParser::CommandLineParser(QObject* _parent) : QObject(_parent), m_par
   m_hideMyPortOption("hide-my-port", tr("Do not announce yourself as peerlist candidate")),
   m_dataDirOption("data-dir", tr("Specify data directory"), tr("directory"), QString::fromLocal8Bit(Tools::getDefaultDataDirectory().c_str())),
   m_minimized("minimized", tr("Run application in minimized mode")) {
-  m_parser.setApplicationDescription(tr("Qwertycoin wallet"));
+  m_parser.setApplicationDescription(tr("Diamoneum wallet"));
   m_parser.addHelpOption();
   m_parser.addVersionOption();
   m_parser.addOption(m_debugOption);

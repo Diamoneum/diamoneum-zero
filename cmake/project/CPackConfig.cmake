@@ -17,15 +17,15 @@ if(PROJECT_OS_LINUX OR PROJECT_OS_POSIX) # Linux
     message(STATUS "Configuring Linux (or POSIX) package...")
 
     set(CPACK_GENERATOR DEB RPM)
-    set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/qwertycoin-zero")
+    set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/Diamoneum-zero")
 
     # DEB
-    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_VENDOR} <dev@qwertycoin.org>")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_VENDOR} <diamoneum@protonmail.com>")
     set(CPACK_DEBIAN_PACKAGE_SECTION Office)
     set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS OFF)
 
     # RPM
-    set(CPACK_RPM_PACKAGE_VENDOR "${CPACK_PACKAGE_VENDOR} <dev@qwertycoin.org>")
+    set(CPACK_RPM_PACKAGE_VENDOR "${CPACK_PACKAGE_VENDOR} <diamoneum@protonmail.com>")
     set(CPACK_RPM_PACKAGE_GROUP Office)
     set(CPACK_RPM_PACKAGE_LICENSE "MIT")
     set(CPACK_RPM_COMPRESSION_TYPE "gzip")
@@ -42,7 +42,7 @@ elseif(PROJECT_OS_WINDOWS) # Windows
     set(CPACK_NSIS_PACKAGE_NAME "${PROJECT_DISPLAY_NAME}")
     set(CPACK_NSIS_HELP_LINK "${PROJECT_VENDOR_URL}")
     set(CPACK_NSIS_URL_INFO_ABOUT "${PROJECT_VENDOR_URL}")
-    set(CPACK_NSIS_CONTACT "${PROJECT_VENDOR_NAME} <dev@qwertycoin.org>")
+    set(CPACK_NSIS_CONTACT "${PROJECT_VENDOR_NAME} <diamoneum@protonmail.com>")
     set(CPACK_NSIS_EXECUTABLES_DIRECTORY "bin")
     set(CPACK_NSIS_MUI_FINISHPAGE_RUN "${PROJECT_DISPLAY_NAME}.exe")
 else() # unknown

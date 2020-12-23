@@ -1,21 +1,22 @@
 // Copyright (c) 2015-2017, The Bytecoin developers
 // Copyright (c) 2017-2018, The Karbo developers
 // Copyright (c) 2019, The Qwertycoin developers
+// Copyright (c) 2020-2021, The Diamoneum developers
 //
-// This file is part of Qwertycoin.
+// This file is part of Diamoneum.
 //
-// Qwertycoin is free software: you can redistribute it and/or modify
+// Diamoneum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// Qwertycoin is distributed in the hope that it will be useful,
+// Diamoneum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with Qwertycoin.  If not, see <http://www.gnu.org/licenses/>.
+// along with Diamoneum.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QApplication>
 #include <QDir>
@@ -58,7 +59,7 @@ const quint32 BYTECOIN_BLOCK_SIZE = 0xd5;
 }
 
 BlockchainInstaller::BlockchainInstaller(QObject* _parent) : QObject(_parent), m_blockIndexesFileName("blockindexes.dat"), m_blocksFileName("blocks.dat"),
-  m_QwertycoinDir(Settings::instance().getDataDir().absolutePath()), m_applicationDir(QDir::current()) {
+  m_DiamoneumDir(Settings::instance().getDataDir().absolutePath()), m_applicationDir(QDir::current()) {
 }
 
 BlockchainInstaller::~BlockchainInstaller() {
@@ -69,20 +70,20 @@ void BlockchainInstaller::exec() {
     return;
   }
 
-  if (!checkIfQwertycoinBlockchainExists()) {
+  if (!checkIfDiamoneumBlockchainExists()) {
     installBlockchain();
     return;
   }
 
   quint64 currentHeight;
-  quint64 QwertycoinHeight;
-  if (!checkIfBlockchainOutdated(currentHeight, QwertycoinHeight)) {
+  quint64 DiamoneumHeight;
+  if (!checkIfBlockchainOutdated(currentHeight, DiamoneumHeight)) {
     return;
   }
 
   QString questionStringTemplate = tr("Would you like to replace your current blockchain (height: %1)\nwith the one in your GUI wallet folder (height: %2)?");
 
-  QuestionDialog dlg(tr("Blockchain installation"), QString(questionStringTemplate).arg(QwertycoinHeight).arg(currentHeight), nullptr);
+  QuestionDialog dlg(tr("Blockchain installation"), QString(questionStringTemplate).arg(DiamoneumHeight).arg(currentHeight), nullptr);
   if (dlg.exec() == QDialog::Accepted) {
     installBlockchain();
   }
@@ -136,15 +137,15 @@ bool BlockchainInstaller::getGenesisBlockFromBlockchain(char** _genesisBlockData
   return true;
 }
 
-bool BlockchainInstaller::checkIfQwertycoinBlockchainExists() const {
-  return m_QwertycoinDir.exists() && m_QwertycoinDir.exists(m_blocksFileName);
+bool BlockchainInstaller::checkIfDiamoneumBlockchainExists() const {
+  return m_DiamoneumDir.exists() && m_DiamoneumDir.exists(m_blocksFileName);
 }
 
 bool BlockchainInstaller::checkIfBlockchainOutdated(quint64& _sourceHeight, quint64& _targetHeight) const {
   quint32 sourceHeight(0);
   quint32 targetHeight(0);
   QFile sourceBlockIndexesFile(m_applicationDir.absoluteFilePath(m_blockIndexesFileName));
-  QFile targetBlockIndexesFile(m_QwertycoinDir.absoluteFilePath(m_blockIndexesFileName));
+  QFile targetBlockIndexesFile(m_DiamoneumDir.absoluteFilePath(m_blockIndexesFileName));
   if (!sourceBlockIndexesFile.open(QIODevice::ReadOnly) || !targetBlockIndexesFile.open(QIODevice::ReadOnly)) {
     return false;
   }
@@ -164,8 +165,8 @@ QFileInfo BlockchainInstaller::currentBlockchainInfo() const {
   return QFileInfo(m_applicationDir.absoluteFilePath(m_blocksFileName));
 }
 
-QFileInfo BlockchainInstaller::QwertycoinBlockchainInfo() const {
-  return QFileInfo(m_QwertycoinDir.absoluteFilePath(m_blocksFileName));
+QFileInfo BlockchainInstaller::DiamoneumBlockchainInfo() const {
+  return QFileInfo(m_DiamoneumDir.absoluteFilePath(m_blocksFileName));
 }
 
 void BlockchainInstaller::copyProgress(quint64 _copied, quint64 _total) {
@@ -174,7 +175,7 @@ void BlockchainInstaller::copyProgress(quint64 _copied, quint64 _total) {
 
 void BlockchainInstaller::installBlockchain() {
   Q_EMIT showMessageSignal(tr("Copying blockchain files..."));
-  m_QwertycoinDir.mkpath(".");
+  m_DiamoneumDir.mkpath(".");
   QThread workerThread;
   AsyncFileProcessor fp;
   fp.moveToThread(&workerThread);
@@ -186,14 +187,14 @@ void BlockchainInstaller::installBlockchain() {
   connect(&fp, &AsyncFileProcessor::errorSignal, &waitLoop, &QEventLoop::exit);
 
   Q_EMIT copyFileSignal(m_applicationDir.absoluteFilePath(m_blockIndexesFileName),
-    m_QwertycoinDir.absoluteFilePath(m_blockIndexesFileName));
+    m_DiamoneumDir.absoluteFilePath(m_blockIndexesFileName));
   if (waitLoop.exec() != 0) {
     workerThread.quit();
     workerThread.wait();
     return;
   }
 
-  Q_EMIT copyFileSignal(m_applicationDir.absoluteFilePath(m_blocksFileName), m_QwertycoinDir.absoluteFilePath(m_blocksFileName));
+  Q_EMIT copyFileSignal(m_applicationDir.absoluteFilePath(m_blocksFileName), m_DiamoneumDir.absoluteFilePath(m_blocksFileName));
   if (waitLoop.exec() != 0) {
     workerThread.quit();
     workerThread.wait();

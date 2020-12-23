@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Qwertycoin wallet is saving data.
+      <string>Diamoneum wallet is saving data.
 Please wait...</string>
      </property>
     </widget>

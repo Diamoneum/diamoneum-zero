@@ -20,9 +20,9 @@ It can import wallet files from [classic Diamoneum wallet](https://github.com/Di
 # Table of contents
 1. [Project Specs](#coinspecs)
 2. [How to Compile Diamoneum](#howtocompile)
-    1. [Qwertycoin for Linux](#build-linux)
-    2. [Qwertycoin for Windows](#build-windows)
-    3. [Qwertycoin for macOS](#build-apple)
+    1. [Diamoneum for Linux](#build-linux)
+    2. [Diamoneum for Windows](#build-windows)
+    3. [Diamoneum for macOS](#build-apple)
 3. [Downloads](#downloads)
 4. [Useful Links](#usefullinks)
 5. [Donate & Thanks](#donate)
